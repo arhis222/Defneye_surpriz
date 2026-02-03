@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1. Yılımız Kutlu Olsun Sevgilim ❤️</title>
     <style>
-        /* Sayfa Düzeni */
         body {
             display: flex;
             justify-content: flex-end; 
@@ -19,8 +18,7 @@
             padding-bottom: 80px; 
             box-sizing: border-box; 
         }
-
-        /* --- Zarf Alanı --- */
+    
         .envelope-container {
             position: relative;
             cursor: pointer;
@@ -31,7 +29,6 @@
             transform: scale(1.02);
         }
         
-        /* Zarfın Kendisi */
         .envelope {
             width: 400px;
             height: 260px;
@@ -43,7 +40,6 @@
             z-index: 2;
         }
 
-        /* Kapak */
         .flap {
             position: absolute;
             top: 0;
@@ -59,7 +55,6 @@
             filter: drop-shadow(0px 2px 3px rgba(0,0,0,0.2));
         }
 
-        /* Cep */
         .pocket {
             position: absolute;
             bottom: 0;
@@ -74,7 +69,6 @@
             z-index: 5;
         }
 
-        /* --- Mektup --- */
         .letter {
             position: absolute;
             bottom: 0; 
@@ -97,7 +91,6 @@
             border-radius: 5px;
         }
 
-        /* --- Animasyonlar --- */
         .open .flap {
             transform: rotateX(180deg);
             z-index: 1; 
@@ -116,14 +109,12 @@
             transition-delay: 0.3s; 
         }
 
-        /* Mektup İçi */
         .letter p { margin-bottom: 12px; line-height: 1.5; width: 100%; text-align: left; }
         .letter h3 { color: #d32f2f; margin-top: 0; font-size: 1.4em; margin-bottom: 15px; border-bottom: 2px solid #eee; padding-bottom: 10px; width: 100%; }
         .letter::-webkit-scrollbar { width: 6px; }
         .letter::-webkit-scrollbar-track { background: #f1f1f1; }
         .letter::-webkit-scrollbar-thumb { background: #ff8a80; border-radius: 3px; }
 
-        /* --- Ekranlar (Soru ve Final) --- */
         #question-screen, #final-screen {
             display: none; 
             position: fixed; 
@@ -138,13 +129,11 @@
             z-index: 9999; 
         }
 
-        /* Final Ekranı */
         #final-screen {
             background-color: black; 
             overflow: hidden; 
         }
 
-        /* ARKA PLAN RESMİ */
         .bg-photo {
             position: absolute;
             top: 50%;
@@ -157,7 +146,6 @@
             opacity: 0.6;
         }
 
-        /* Final İçerik */
         .final-content {
             z-index: 20; 
             position: relative;
@@ -165,7 +153,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 100px; /* Alttan çıkan güller için yer aç */
+            margin-bottom: 100px;
         }
 
         .final-content h1, .final-content p {
@@ -174,7 +162,6 @@
             font-weight: bold;
         }
 
-        /* --- KÖŞE ANİMASYONLARI --- */
         .corner-gif {
             position: absolute;
             width: 150px; 
@@ -189,7 +176,6 @@
         .bl { bottom: 20px; left: 20px; }
         .br { bottom: 20px; right: 20px; }
 
-        /* --- ALTTAN ÇIKAN MEME (SİZİN İSTEDİĞİNİZ) --- */
         .rising-roses-container {
             position: absolute;
             bottom: 0;
@@ -358,14 +344,12 @@
             const finalScreen = document.getElementById('final-screen');
             finalScreen.style.display = 'flex';
             
-            // Animasyonları başlat
             setTimeout(() => {
                  finalScreen.classList.add('active-final');
             }, 100);
 
-            // MÜZİĞİ BAŞLAT
             const audio = document.getElementById('love-song');
-            audio.volume = 0.5; // Ses seviyesi %50
+            audio.volume = 0.5; 
             audio.play().catch(error => {
                 console.log("Otomatik oynatma engellendi, kullanıcı etkileşimi gerekebilir.");
             });
