@@ -1,372 +1,565 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>1. Yılımız Kutlu Olsun Sevgilim ❤️</title>
     <style>
-        body {
-            display: flex;
-            justify-content: flex-end; 
-            align-items: center;       
-            height: 100vh;
-            background-color: #fce4ec;
-            font-family: 'Arial', sans-serif;
-            overflow: hidden; 
-            margin: 0;
-            flex-direction: column;
-            padding-bottom: 80px; 
-            box-sizing: border-box; 
-        }
-    
-        .envelope-container {
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.3s;
-            z-index: 5; 
-        }
-        .envelope-container:hover {
-            transform: scale(1.02);
-        }
-        
-        .envelope {
-            width: 400px;
-            height: 260px;
-            background-color: #b71c1c; 
-            position: relative;
-            border-bottom-left-radius: 15px;
-            border-bottom-right-radius: 15px;
-            box-shadow: 0 20px 45px rgba(0,0,0,0.3);
-            z-index: 2;
-        }
+      body {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 100vh;
+        background-color: #fce4ec;
+        font-family: "Arial", sans-serif;
+        overflow: hidden;
+        margin: 0;
+        flex-direction: column;
+        padding-bottom: 80px;
+        box-sizing: border-box;
+      }
 
-        .flap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-left: 200px solid transparent;
-            border-right: 200px solid transparent;
-            border-top: 160px solid #ff1744; 
-            transform-origin: top;
-            transition: transform 0.6s 0.2s; 
-            z-index: 6; 
-            filter: drop-shadow(0px 2px 3px rgba(0,0,0,0.2));
-        }
+      .envelope-container {
+        position: relative;
+        cursor: pointer;
+        transition: transform 0.3s;
+        z-index: 5;
+      }
+      .envelope-container:hover {
+        transform: scale(1.02);
+      }
 
-        .pocket {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-left: 200px solid #ff1744;  
-            border-right: 200px solid #ff1744; 
-            border-top: 160px solid transparent;
-            border-bottom-left-radius: 15px;
-            border-bottom-right-radius: 15px;
-            z-index: 5;
-        }
+      .envelope {
+        width: 400px;
+        height: 260px;
+        background-color: #b71c1c;
+        position: relative;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+        z-index: 2;
+      }
 
-        .letter {
-            position: absolute;
-            bottom: 0; 
-            left: 15px;
-            width: 370px;
-            height: 0px;        
-            opacity: 0;          
-            padding: 0px;        
-            background-color: white;
-            box-sizing: border-box;
-            transition: all 0.8s ease-in-out;
-            z-index: 1; 
-            text-align: center;
-            font-size: 15px;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow: hidden; 
-            border-radius: 5px;
-        }
+      .flap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-left: 200px solid transparent;
+        border-right: 200px solid transparent;
+        border-top: 160px solid #ff1744;
+        transform-origin: top;
+        transition: transform 0.6s 0.2s;
+        z-index: 6;
+        filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.2));
+      }
 
-        .open .flap {
-            transform: rotateX(180deg);
-            z-index: 1; 
-            transition: transform 0.4s; 
-            filter: brightness(0.7); 
-        }
+      .pocket {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-left: 200px solid #ff1744;
+        border-right: 200px solid #ff1744;
+        border-top: 160px solid transparent;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        z-index: 5;
+      }
 
-        .open .letter {
-            bottom: 50px;       
-            height: 540px;      
-            opacity: 1;         
-            padding: 25px;      
-            z-index: 7;         
-            overflow-y: auto;   
-            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-            transition-delay: 0.3s; 
-        }
+      .letter {
+        position: absolute;
+        bottom: 0;
+        left: 15px;
+        width: 370px;
+        height: 0px;
+        opacity: 0;
+        padding: 0px;
+        background-color: white;
+        box-sizing: border-box;
+        transition: all 0.8s ease-in-out;
+        z-index: 1;
+        text-align: center;
+        font-size: 15px;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+        border-radius: 5px;
+      }
 
-        .letter p { margin-bottom: 12px; line-height: 1.5; width: 100%; text-align: left; }
-        .letter h3 { color: #d32f2f; margin-top: 0; font-size: 1.4em; margin-bottom: 15px; border-bottom: 2px solid #eee; padding-bottom: 10px; width: 100%; }
-        .letter::-webkit-scrollbar { width: 6px; }
-        .letter::-webkit-scrollbar-track { background: #f1f1f1; }
-        .letter::-webkit-scrollbar-thumb { background: #ff8a80; border-radius: 3px; }
+      .open .flap {
+        transform: rotateX(180deg);
+        z-index: 1;
+        transition: transform 0.4s;
+        filter: brightness(0.7);
+      }
 
-        #question-screen, #final-screen {
-            display: none; 
-            position: fixed; 
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #fce4ec; 
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999; 
-        }
+      .open .letter {
+        bottom: 50px;
+        height: 540px;
+        opacity: 1;
+        padding: 25px;
+        z-index: 7;
+        overflow-y: auto;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        transition-delay: 0.3s;
+      }
 
-        #final-screen {
-            background-color: black; 
-            overflow: hidden; 
-        }
+      .letter p {
+        margin-bottom: 12px;
+        line-height: 1.5;
+        width: 100%;
+        text-align: left;
+      }
+      .letter h3 {
+        color: #d32f2f;
+        margin-top: 0;
+        font-size: 1.4em;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+        width: 100%;
+      }
+      .letter::-webkit-scrollbar {
+        width: 6px;
+      }
+      .letter::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      .letter::-webkit-scrollbar-thumb {
+        background: #ff8a80;
+        border-radius: 3px;
+      }
 
-        .bg-photo {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-90deg);
-            width: 100vh; 
-            height: 100vw; 
-            object-fit: cover; 
-            z-index: 1; 
-            opacity: 0.6;
-        }
+      #question-screen,
+      #final-screen {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fce4ec;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
 
-        .final-content {
-            z-index: 20; 
-            position: relative;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 100px;
-        }
+      #final-screen {
+        background-color: black;
+        overflow: hidden;
+      }
 
-        .final-content h1, .final-content p {
-            color: white !important; 
-            text-shadow: 2px 2px 10px rgba(0,0,0,1);
-            font-weight: bold;
-        }
+      .bg-photo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-90deg);
+        width: 100vh;
+        height: 100vw;
+        object-fit: cover;
+        z-index: 1;
+        opacity: 0.6;
+      }
 
-        .corner-gif {
-            position: absolute;
-            width: 150px; 
-            height: auto;
-            border-radius: 15px;
-            z-index: 15; 
-            box-shadow: 0 0 15px rgba(255,255,255,0.3);
-            opacity: 0.9;
-        }
-        .tl { top: 20px; left: 20px; }
-        .tr { top: 20px; right: 20px; }
-        .bl { bottom: 20px; left: 20px; }
-        .br { bottom: 20px; right: 20px; }
+      .final-content {
+        z-index: 20;
+        position: relative;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 100px;
+      }
 
-        .rising-roses-container {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: auto;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            z-index: 18;
-            pointer-events: none;
-        }
+      .final-content h1,
+      .final-content p {
+        color: white !important;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
+        font-weight: bold;
+      }
 
-        .rising-rose {
-            width: auto;
-            height: 200px; 
-            transform: translateY(100%); 
-            opacity: 0;
-            margin: 0 -20px; 
-        }
+      .corner-gif {
+        position: absolute;
+        width: 150px;
+        height: auto;
+        border-radius: 15px;
+        z-index: 15;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        opacity: 0.9;
+      }
+      .tl { top: 20px; left: 20px; }
+      .tr { top: 20px; right: 20px; }
+      .bl { bottom: 20px; left: 20px; }
+      .br { bottom: 20px; right: 20px; }
 
-        @keyframes riseUpRomantic {
-            0% { transform: translateY(100%) scale(0.8); opacity: 0; }
-            100% { transform: translateY(0%) scale(1); opacity: 1; }
-        }
+      .rising-roses-container {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        z-index: 18;
+        pointer-events: none;
+      }
 
-        .active-final .rising-rose {
-            animation: riseUpRomantic 4s ease-out forwards;
-        }
+      .rising-rose {
+        width: auto;
+        height: 200px;
+        transform: translateY(100%);
+        opacity: 0;
+        margin: 0 -20px;
+      }
 
-        .rr1 { animation-delay: 0.5s; height: 200px; }
-        .rr2 { animation-delay: 1.5s; height: 230px; z-index: 19; } 
-        .rr3 { animation-delay: 1.0s; height: 190px; }
+      @keyframes riseUpRomantic {
+        0% { transform: translateY(100%) scale(0.8); opacity: 0; }
+        100% { transform: translateY(0%) scale(1); opacity: 1; }
+      }
 
+      .active-final .rising-rose {
+        animation: riseUpRomantic 4s ease-out forwards;
+      }
 
-        @media (max-width: 500px) {
-            .corner-gif { width: 100px; }
-            .tl { top: 10px; left: 10px; }
-            .tr { top: 10px; right: 10px; }
-            .bl { bottom: 10px; left: 10px; }
-            .br { bottom: 10px; right: 10px; }
-            .rising-rose { height: 150px; } 
-        }
+      .rr1 { animation-delay: 0.5s; height: 200px; }
+      .rr2 { animation-delay: 1.5s; height: 230px; z-index: 19; }
+      .rr3 { animation-delay: 1s; height: 190px; }
 
-        h1 { color: #d32f2f; font-size: 2.5em; margin: 20px; text-align: center; z-index: 10001; position: relative;}
-        .buttons { margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; z-index: 10001; position: relative; }
-        
-        button { padding: 15px 35px; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; transition: all 0.3s; font-size: 18px; box-shadow: 0 5px 10px rgba(0,0,0,0.2); }
-        #yes-btn { background-color: #4CAF50; color: white; z-index: 10002; } 
-        #no-btn { background-color: #f44336; color: white; }
-        
-        .confetti { position: absolute; width: 12px; height: 12px; background-color: red; animation: fall linear forwards; z-index: 10000; }
-        @keyframes fall { to { transform: translateY(100vh) rotate(720deg); } }
+      h1 {
+        color: #d32f2f;
+        font-size: 2.5em;
+        margin: 20px;
+        text-align: center;
+        z-index: 10001;
+        position: relative;
+      }
+      .buttons {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        z-index: 10001;
+        position: relative;
+      }
 
-        @media (max-width: 450px) {
-            .envelope-container { transform: scale(0.85); }
-            h1 { font-size: 1.8em; }
-        }
+      button {
+        padding: 15px 35px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s;
+        font-size: 18px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      }
+      #yes-btn { background-color: #4caf50; color: white; z-index: 10002; }
+      #no-btn { background-color: #f44336; color: white; }
+
+      .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        top: -10px;
+        z-index: 10000;
+        border-radius: 2px;
+      }
+
+      @keyframes fall {
+        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(105vh) rotate(720deg); opacity: 0.7; }
+      }
+
+      @keyframes shake {
+        0% { transform: translate(1px, 1px) rotate(0deg); }
+        10% { transform: translate(-1px, -2px) rotate(-1deg); }
+        20% { transform: translate(-3px, 0px) rotate(1deg); }
+        30% { transform: translate(3px, 2px) rotate(0deg); }
+        40% { transform: translate(1px, -1px) rotate(1deg); }
+        50% { transform: translate(-1px, 2px) rotate(-1deg); }
+        100% { transform: translate(1px, -2px) rotate(0deg); }
+      }
+
+      .shake-it { animation: shake 0.5s ease-in-out; }
+
+      .floating-heart {
+        position: absolute;
+        color: rgba(255, 138, 128, 0.3);
+        pointer-events: none;
+        z-index: 0;
+        animation: floatAround 10s linear infinite;
+        user-select: none;
+      }
+
+      @keyframes floatAround {
+        0% { transform: translateY(110vh) translateX(0) rotate(0deg); opacity: 0; }
+        10% { opacity: 0.5; }
+        90% { opacity: 0.5; }
+        100% { transform: translateY(-10vh) translateX(50px) rotate(360deg); opacity: 0; }
+      }
+
+      @media (max-width: 450px) {
+        .envelope-container { transform: scale(0.85); }
+        h1 { font-size: 1.8em; }
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <audio id="love-song" loop>
-        <source src="music.mp3" type="audio/mpeg">
-        Tarayıcınız ses elementini desteklemiyor.
+      <source src="music.mp3" type="audio/mpeg" />
+    </audio>
+
+    <audio id="click-sound">
+      <source src="click.mp3" type="audio/mpeg" />
+    </audio>
+
+    <audio id="paper-sound">
+      <source src="paper.mp3" type="audio/mpeg" />
+    </audio>
+
+    <audio id="button_grow-sound">
+      <source src="button_grow.mp3" type="audio/mpeg" />
+    </audio>
+
+    <audio id="confetti-sound">
+      <source src="gah-dayum.mp3" type="audio/mpeg" />
     </audio>
 
     <div class="envelope-container" id="envelope-box" onclick="openEnvelope()">
-        <div class="envelope">
-            <div class="flap"></div>
-            <div class="pocket"></div>
-            <div class="letter">
-                <h3>Sevgilim, İlk ve Tek Aşkım...</h3>
-                <p>11 yıl boyunca aynı okulun koridorlarında birbirini tanımayan iki yabancıydık. Starbucks'ta sırt sırta oturup bi selam vermeye bile çekinirdik ama eve gelince sabahlar olmazdı konuşmaktan... Yüz yüze gelince utanan ama kalpleri birbiri için atan o iki çocuğu hatırlıyor musun?</p>
-                <p>Okula beraber yürümeye başladığımız, banklarda oturup geçenlere güldüğümüz o günler... Sırf sen 12'lerden korkuyon diye her teneffüs sizin kata, sınıfına yanina gelirdim. O zamanlar masum bir çocukluk aşkıydı belki, beni hayata bağlayan ilk şeydin ama şimdi görüyorum ki kaderimizmiş.</p>
-                <p>Araya giren mesafelere inat, geçen sene hikayemiz asıl şimdi başladı. Bana yeniden mutlu olmayı, yeniden sevmeyi öğrettin. Chambéry, Paris, İstanbul, Ankara, Menton, Nice, Rapallo, Portofino, Monaco, Lyon... Seninle gezdiğimiz ve gezeceğimiz her şehir şahidimiz olsun.</p>
-                <p>Şimdi uzaktayız belki ama ayda bir kavuştuğumuzda, o 1 hafta sanki evli bir çiftmişiz gibi geçiyor ya... Sabah uyandığımda yanımda seni görmek, okuldan eve döndüğümde beni karşılaman dünyadaki en güzel an benim için.</p>
-                <p>Hem en yakın arkadaşım, hem sevgilim, hem de her şeyimsin. 1. yılımız kutlu olsun, nice senelere bir tanem... ❤️</p>
-                <p style="margin-top:10px; font-weight:bold; text-align:right;">- Sevgilin Arhis</p>
-                <hr style="width:100%; border:0; border-top:1px solid #eee; margin: 20px 0;">
-                <div style="text-align: center; padding-bottom: 20px;">
-                    <p style="text-align:center; font-weight:bold; color:#d32f2f;">Sana küçük bir sorum var BRO</p>
-                    <button onclick="showQuestion(event)" style="background:#ff4081; color:white; padding:12px 25px; font-size:16px; border-radius: 20px;">Soruyu Gör</button>
-                </div>
-            </div>
+      <div class="envelope">
+        <div class="flap"></div>
+        <div class="pocket"></div>
+        <div class="letter">
+          <h3>Sevgilim, İlk ve Tek Aşkım...</h3>
+          <p>
+            11 yıl boyunca aynı okulun koridorlarında birbirini tanımayan iki
+            yabancıydık. Starbucks'ta sırt sırta oturup bi selam vermeye bile
+            çekinirdik ama eve gelince sabahlar olmazdı konuşmaktan... Yüz yüze
+            gelince utanan ama kalpleri birbiri için atan o iki çocuğu
+            hatırlıyor musun?
+          </p>
+          <p>
+            Okula beraber yürümeye başladığımız, banklarda oturup geçenlere
+            güldüğümüz o günler... Sırf sen 12'lerden korkuyon diye her teneffüs
+            sizin kata, sınıfına yanina gelirdim. O zamanlar masum bir çocukluk
+            aşkıydı belki, beni hayata bağlayan ilk şeydin ama şimdi görüyorum
+            ki kaderimizmiş.
+          </p>
+          <p>
+            Araya giren mesafelere inat, geçen sene hikayemiz asıl şimdi
+            başladı. Bana yeniden mutlu olmayı, yeniden sevmeyi öğrettin.
+            Chambéry, Paris, İstanbul, Ankara, Menton, Nice, Rapallo, Portofino,
+            Monaco, Lyon... Seninle gezdiğimiz ve gezeceğimiz her şehir
+            şahidimiz olsun.
+          </p>
+          <p>
+            Şimdi uzaktayız belki ama ayda bir kavuştuğumuzda, o 1 hafta sanki
+            evli bir çiftmişiz gibi geçiyor ya... Sabah uyandığımda yanımda seni
+            görmek, okuldan eve döndüğümde beni karşılaman dünyadaki en güzel an
+            benim için.
+          </p>
+          <p>
+            Hem en yakın arkadaşım, hem sevgilim, hem de her şeyimsin. 1.
+            yılımız kutlu olsun, nice senelere bir tanem... ❤️
+          </p>
+          <p style="margin-top: 10px; font-weight: bold; text-align: right">
+            - Sevgilin Arhis
+          </p>
+          <hr style="width: 100%; border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
+          <div style="text-align: center; padding-bottom: 20px">
+            <p style="text-align: center; font-weight: bold; color: #d32f2f">
+              Sana küçük bir sorum var BRO
+            </p>
+            <button
+              onclick="showQuestion(event)"
+              style="background: #ff4081; color: white; padding: 12px 25px; font-size: 16px; border-radius: 20px;"
+            >
+              Soruyu Gör
+            </button>
+          </div>
         </div>
-        <p class="click-text" style="text-align:center; margin-top: 30px; color:#d32f2f; font-weight:bold; font-size: 1.5em; text-shadow: 1px 1px 2px white;">Zarfa Tıkla Be Artık 💌</p>
+      </div>
+      <p
+        class="click-text"
+        style="text-align: center; margin-top: 30px; color: #d32f2f; font-weight: bold; font-size: 1.5em; text-shadow: 1px 1px 2px white;"
+      >
+        Zarfa Tıkla Be Artık 💌
+      </p>
     </div>
 
     <div id="question-screen">
-        <h1>Beni seviyor musun?</h1>
-        <div class="buttons">
-            <button id="no-btn" onclick="growYes()">Yok</button>
-            <button id="yes-btn" onclick="showRose()">Evet</button>
-        </div>
+      <h1>Beni seviyor musun?</h1>
+      <div class="buttons">
+        <button id="no-btn" onclick="growYes()">Yok</button>
+        <button id="yes-btn" onclick="showRose()">Evet</button>
+      </div>
     </div>
 
     <div id="final-screen">
-        <img src="defne_ve_ben.png" alt="Arka Plan" class="bg-photo">
-
-        <img src="https://media.giphy.com/media/qKePip325mH2U/giphy.gif" class="corner-gif tl" alt="maymun">
-        <img src="https://media.giphy.com/media/e3I6q51Xtz9Z0zAWpi/giphy.gif" class="corner-gif tr" alt="jake">
-        <img src="https://media.giphy.com/media/GeimqsH0TLDt4tScGw/giphy.gif" class="corner-gif bl" alt="Kedi">
-        <img src="https://media.giphy.com/media/DDgHvbLeMkemvhKxgB/giphy.gif" class="corner-gif br" alt="fok balığı">
-        
-        <div class="rising-roses-container">
-            <img src="https://media.giphy.com/media/vMYqB2S9SyJjO64nRV/giphy.gif" class="rising-rose rr1" alt="eminem 1">
-            <img src="https://media.giphy.com/media/vMYqB2S9SyJjO64nRV/giphy.gif" class="rising-rose rr2" alt="eminem 2">
-            <img src="https://media.giphy.com/media/vMYqB2S9SyJjO64nRV/giphy.gif" class="rising-rose rr3" alt="eminem 3">
-        </div>
-
-        <div class="final-content">
-            <h1>Ben seni daha çok seviyorum! 100milyon/10 ❤️</h1>
-            <p style="font-size: 1.5em;">Nice yıllarımıza... (Haaayır çiçeklerim yere düştüüüğ)</p>
-        </div>
+      <img src="defne_ve_ben.png" alt="Arka Plan" class="bg-photo" />
+      <img src="https://media.giphy.com/media/qKePip325mH2U/giphy.gif" class="corner-gif tl" alt="maymun" />
+      <img src="https://media.giphy.com/media/e3I6q51Xtz9Z0zAWpi/giphy.gif" class="corner-gif tr" alt="jake" />
+      <img src="https://media.giphy.com/media/GeimqsH0TLDt4tScGw/giphy.gif" class="corner-gif bl" alt="Kedi" />
+      <img src="https://media.giphy.com/media/DDgHvbLeMkemvhKxgB/giphy.gif" class="corner-gif br" alt="fok balığı" />
+      <div class="rising-roses-container">
+        <img src="https://media.giphy.com/media/vMYqB2S9SyJjO64nRV/giphy.gif" class="rising-rose rr1" alt="eminem 1" />
+        <img src="https://media.giphy.com/media/vMYqB2S9SyJjO64nRV/giphy.gif" class="rising-rose rr2" alt="eminem 2" />
+        <img src="https://media.giphy.com/media/vMYqB2S9SyJjO64nRV/giphy.gif" class="rising-rose rr3" alt="eminem 3" />
+      </div>
+      <div class="final-content">
+        <h1>Ben seni daha çok seviyorum! 100milyon/10 ❤️</h1>
+        <p style="font-size: 1.5em"> Nice yıllarımıza... (Haaayır çiçeklerim yere düştüüüğ) </p>
+      </div>
     </div>
 
     <script>
-        let yesSize = 18; 
-        let noClicks = 0;
-        const messages = ["Emin misin?", "Defne ciddiyim?", "Uzatma Hadi", "Alınmaya başlıyom", "Şaka yapıyon dimi?", "EVET DE AMA ARTIK KARI!"];
+      let yesSize = 18;
+      let noClicks = 0;
+      const messages = [
+        "Emin misin?",
+        "Defne ciddiyim?",
+        "Uzatma Hadi",
+        "Alınmaya başlıyom",
+        "Şaka yapıyon dimi?",
+        "EVET DE AMA ARTIK KARI!",
+      ];
 
-        function openEnvelope() {
-            document.querySelector('.envelope-container').classList.add('open');
-            const textElement = document.querySelector('.click-text');
-            if(textElement) textElement.style.opacity = '0';
+      document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+          document.title = "Beni Unutma... ❤️";
+        } else {
+          document.title = "1. Yılımız Kutlu Olsun Sevgilim ❤️";
         }
+      });
 
-        function showQuestion(e) {
-            e.stopPropagation(); 
-            document.getElementById('envelope-box').style.display = 'none';
-            document.getElementById('question-screen').style.display = 'flex';
+      function spawnHeart(initial = false) {
+        const heart = document.createElement('div');
+        heart.classList.add('floating-heart');
+        heart.innerHTML = Math.random() > 0.5 ? '❤️' : '💖';
+        heart.style.left = Math.random() * 100 + 'vw';
+        
+        if (initial) {
+          heart.style.top = Math.random() * 100 + 'vh';
+        } else {
+          heart.style.top = '110vh';
         }
+        
+        heart.style.fontSize = Math.random() * 15 + 10 + 'px';
+        heart.style.animationDuration = Math.random() * 5 + 7 + 's';
+        heart.style.opacity = Math.random() * 0.5 + 0.2;
+        document.body.appendChild(heart);
+        
+      }
 
-        function growYes() {
-            const yesBtn = document.getElementById('yes-btn');
-            const noBtn = document.getElementById('no-btn');
+      for(let i=0; i<20; i++) spawnHeart(true);
+      setInterval(spawnHeart, 600);
 
-            if (noClicks >= messages.length) {
-                noBtn.style.display = 'none'; 
-                
-                yesBtn.style.position = 'fixed';
-                yesBtn.style.top = '0';
-                yesBtn.style.left = '0';
-                yesBtn.style.width = '100vw';
-                yesBtn.style.height = '100vh';
-                yesBtn.style.fontSize = '15vw'; 
-                yesBtn.style.borderRadius = '0'; 
-                yesBtn.style.display = 'flex';
-                yesBtn.style.justifyContent = 'center';
-                yesBtn.style.alignItems = 'center';
-                yesBtn.style.zIndex = '10005'; 
-                yesBtn.innerText = "EVET! ❤️";
-            } else {
-                yesSize += 40; 
-                yesBtn.style.fontSize = yesSize + 'px';
-                yesBtn.style.padding = (yesSize/2) + 'px ' + yesSize + 'px';
-                
-                noBtn.innerText = messages[noClicks];
-            }
-            noClicks++;
+      function openEnvelope() {
+        document.querySelector(".envelope-container").classList.add("open");
+        const textElement = document.querySelector(".click-text");
+        if (textElement) textElement.style.opacity = "0";
+        document.getElementById("paper-sound").play();
+      }
+
+      function playClick() {
+        const clickSnd = document.getElementById("click-sound");
+        clickSnd.currentTime = 0;
+        clickSnd.play();
+      }
+
+      function playButtonGrowSound() {
+        const clickSnd = document.getElementById("button_grow-sound");
+        clickSnd.currentTime = 0;
+        clickSnd.play();
+      }
+
+      function playConfettiSound() {
+        const clickSnd = document.getElementById("confetti-sound");
+        clickSnd.currentTime = 0;
+        clickSnd.play();
+      }
+
+      function showQuestion(e) {
+        playClick();
+        e.stopPropagation();
+        document.getElementById("envelope-box").style.display = "none";
+        document.getElementById("question-screen").style.display = "flex";
+      }
+
+      function growYes() {
+        playButtonGrowSound();
+        const yesBtn = document.getElementById("yes-btn");
+        const noBtn = document.getElementById("no-btn");
+
+        if (noClicks >= messages.length) {
+          noBtn.style.display = "none";
+          yesBtn.style.position = "fixed";
+          yesBtn.style.top = "0";
+          yesBtn.style.left = "0";
+          yesBtn.style.width = "100vw";
+          yesBtn.style.height = "100vh";
+          yesBtn.style.fontSize = "15vw";
+          yesBtn.style.borderRadius = "0";
+          yesBtn.style.display = "flex";
+          yesBtn.style.justifyContent = "center";
+          yesBtn.style.alignItems = "center";
+          yesBtn.style.zIndex = "10005";
+          yesBtn.innerText = "EVET! ❤️";
+        } else {
+          yesSize += 40;
+          yesBtn.style.fontSize = yesSize + "px";
+          yesBtn.style.padding = yesSize / 2 + "px " + yesSize + "px";
+          noBtn.innerText = messages[noClicks];
         }
+        noClicks++;
+      }
 
-        function showRose() {
-            document.getElementById('question-screen').style.display = 'none';
-            const finalScreen = document.getElementById('final-screen');
-            finalScreen.style.display = 'flex';
-            
-            setTimeout(() => {
-                 finalScreen.classList.add('active-final');
-            }, 100);
+      function showRose() {
+        playClick();
+        document.body.classList.add('shake-it');
+        setTimeout(() => document.body.classList.remove('shake-it'), 500);
+        document.getElementById("question-screen").style.display = "none";
+        const finalScreen = document.getElementById("final-screen");
+        finalScreen.style.display = "flex";
+        setTimeout(() => {
+          finalScreen.classList.add("active-final");
+        }, 100);
+        const audio = document.getElementById("love-song");
+        audio.volume = 0.5;
+        audio.play().catch((error) => {
+          console.log("Ses çalma hatası.");
+        });
+        createConfetti();
+      }
 
-            const audio = document.getElementById('love-song');
-            audio.volume = 0.5; 
-            audio.play().catch(error => {
-                console.log("Otomatik oynatma engellendi, kullanıcı etkileşimi gerekebilir.");
-            });
-
-            createConfetti();
+      function createConfetti() {
+        playConfettiSound();
+        const colors = ["#ff4081", "#ff8a80", "#f44336", "#ffffff", "#ffd54f"];
+        for (let i = 0; i < 150; i++) {
+          const confetti = document.createElement("div");
+          confetti.classList.add("confetti");
+          const size = Math.random() * 8 + 5 + "px";
+          confetti.style.width = size;
+          confetti.style.height = parseFloat(size) * 0.6 + "px";
+          confetti.style.left = Math.random() * 100 + "vw";
+          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          const duration = Math.random() * 2 + 4 + "s";
+          const delay = Math.random() * 2 + "s";
+          confetti.style.animation = `fall ${duration} linear ${delay} forwards`;
+          document.body.appendChild(confetti);
+          setTimeout(() => {
+            confetti.remove();
+          }, 7000);
         }
-
-        function createConfetti() {
-            for (let i = 0; i < 100; i++) { 
-                const confetti = document.createElement('div');
-                confetti.classList.add('confetti');
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
-                document.body.appendChild(confetti);
-            }
-        }
+      }
     </script>
-</body>
+  </body>
 </html>
