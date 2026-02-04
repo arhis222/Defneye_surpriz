@@ -210,28 +210,38 @@
 
       .corner-gif {
         position: absolute;
-        width: 100px;
+        width: 160px; /* Boyutu biraz büyütüldü */
         height: auto;
         border-radius: 15px;
-        z-index: 15;
+        z-index: 100; /* Daha üstte olması için */
         box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
         opacity: 0.8;
+        transition:
+          transform 0.4s ease,
+          opacity 0.3s ease;
       }
+
+      .corner-gif:hover {
+        transform: scale(1.4);
+        opacity: 1;
+        z-index: 101;
+      }
+
       .tl {
-        top: 10px;
-        left: 10px;
+        top: 20px;
+        left: 20px;
       }
       .tr {
-        top: 10px;
-        right: 10px;
+        top: 20px;
+        right: 20px;
       }
       .bl {
-        bottom: 10px;
-        left: 10px;
+        bottom: 20px;
+        left: 20px;
       }
       .br {
-        bottom: 10px;
-        right: 10px;
+        bottom: 20px;
+        right: 20px;
       }
 
       .polaroid-gallery {
@@ -260,7 +270,6 @@
         object-fit: cover;
       }
 
-      /* Hoverda cikacak not stili */
       .p-note {
         position: absolute;
         bottom: -35px;
@@ -283,6 +292,10 @@
       .polaroid:hover .p-note {
         opacity: 1;
       }
+      .polaroid:hover {
+        transform: scale(1.5) rotate(0deg);
+        z-index: 30;
+      }
 
       .p1 {
         transform: rotate(-8deg);
@@ -304,11 +317,6 @@
       }
       .p7 {
         transform: rotate(-12deg);
-      }
-
-      .polaroid:hover {
-        transform: scale(1.5) rotate(0deg);
-        z-index: 30;
       }
 
       .mouse-sparkle {
@@ -340,15 +348,36 @@
         justify-content: center;
         align-items: flex-end;
         z-index: 18;
-        pointer-events: none;
+        pointer-events: auto; /* Hover algılaması için */
       }
 
       .rising-rose {
         width: auto;
-        height: 180px;
+        height: 200px;
         transform: translateY(100%);
         opacity: 0;
         margin: 0 -15px;
+        transition: transform 0.4s ease;
+      }
+
+      /* Farklı yükseklikler için özel sınıflar */
+      .rr1 {
+        height: 180px;
+        animation-delay: 0.5s;
+      }
+      .rr2 {
+        height: 260px;
+        animation-delay: 1.5s;
+        z-index: 19;
+      }
+      .rr3 {
+        height: 210px;
+        animation-delay: 1s;
+      }
+
+      .rising-rose:hover {
+        transform: scale(1.4) translateY(-30px) !important;
+        z-index: 35;
       }
 
       @keyframes riseUpRomantic {
@@ -364,16 +393,6 @@
 
       .active-final .rising-rose {
         animation: riseUpRomantic 4s ease-out forwards;
-      }
-      .rr1 {
-        animation-delay: 0.5s;
-      }
-      .rr2 {
-        animation-delay: 1.5s;
-        z-index: 19;
-      }
-      .rr3 {
-        animation-delay: 1s;
       }
 
       h1 {
@@ -517,6 +536,9 @@
           width: 65px;
           height: 65px;
         }
+        .corner-gif {
+          width: 110px;
+        }
       }
     </style>
   </head>
@@ -526,6 +548,9 @@
     </audio>
     <audio id="final-song" loop>
       <source src="music.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="voice-message">
+      <source src="sesim.mp3" type="audio/mpeg" />
     </audio>
     <audio id="click-sound"><source src="click.mp3" type="audio/mpeg" /></audio>
     <audio id="paper-sound"><source src="paper.mp3" type="audio/mpeg" /></audio>
@@ -550,7 +575,6 @@
         <div class="letter">
           <div id="typewriter-area">
             <h3>Sevgilim, İlk ve Tek Aşkım…</h3>
-
             <p>
               11 yıl boyunca aynı okulun koridorlarında yürüyen ama birbirini
               tanımayan iki yabancıydık. Starbucks’ta sırt sırta oturur, bir
@@ -558,7 +582,6 @@
               olmazdı, saatlerce konuşurduk. Yüz yüze gelince utanan ama
               kalpleri gizlice birbirine koşan o iki çocuğu hatırlıyor musun?
             </p>
-
             <p>
               Birlikte okula yürümeye başladığımız, banklarda oturup geçen
               insanlara güldüğümüz o günler… Sırf sen 12’lerden korkuyorsun diye
@@ -567,15 +590,14 @@
               beni hayata bağlayan ilk şeydin. Şimdi dönüp bakınca anlıyorum ki
               bu sadece bir tesadüf değilmiş… bu bizim kaderimizmiş.
             </p>
-
             <p>
               Araya giren tüm mesafelere inat, hikâyemiz geçen sene yeniden ve
               gerçekten başladı. Bana tekrar mutlu olmayı, tekrar sevmeyi sen
               öğrettin. Ankara, Chambéry, Grenoble, İstanbul, Paris, Nice,
               Menton, Rapallo, Portofino, Monaco, Lyon… Seninle yürüdüğümüz ve
-              daha yürüyeceğimiz her şehir, aşkımıza şahit olsun.
+              daha yürüyeceğimiz her şehir, evimizdeki o kutuphaneye istediğin
+              anı kitaplarına materyal olsun (adını bilmiyom o şeylerin).
             </p>
-
             <p>
               Şimdi belki uzaktayız ama ayda bir kavuştuğumuzda, o bir hafta var
               ya… Sanki çoktan bir hayat kurmuşuz gibi geçiyor. Sabah
@@ -666,6 +688,7 @@
 
     <div id="final-screen">
       <img src="defne_ve_ben.png" alt="Arka Plan" class="bg-photo" />
+
       <img
         src="https://media.giphy.com/media/qKePip325mH2U/giphy.gif"
         class="corner-gif tl"
@@ -685,59 +708,50 @@
 
       <div class="final-content">
         <h1>Ben seni daha çok seviyorum! 100milyon/10 ❤️</h1>
-
         <div class="polaroid-gallery">
           <div class="polaroid p1">
             <img src="foto1.jpg" />
             <div class="p-note">
-              Paris; Eiffel'in tepesinde "Kaça otururuz?" diye hesaplarken... ✨
+              Paris; Eiffel'in tepesinde "Kaça otururuz?" ✨
             </div>
           </div>
-
           <div class="polaroid p2">
             <img src="foto2.jpg" />
             <div class="p-note">
               Menton; Sen güzelliğine güzellik katarken... 💄
             </div>
           </div>
-
           <div class="polaroid p3">
             <img src="foto3.jpg" />
             <div class="p-note">
               İstanbul; Babalar firar GS teknesinde... 🦁
             </div>
           </div>
-
           <div class="polaroid p4">
             <img src="foto4.jpg" />
             <div class="p-note">
               Lyon; Dönme dolaba 40 Euro domaldığımız an... 🎡
             </div>
           </div>
-
           <div class="polaroid p5">
             <img src="foto5.jpg" />
             <div class="p-note">
               Grenoble; Sassenage yolundaki o huzurlu köyde... 🏔️
             </div>
           </div>
-
           <div class="polaroid p6">
             <img src="foto6.jpg" />
             <div class="p-note">
-              Monaco; Senin bitmek bilmeyen o 1 saatlik TikTok mesain... 📱
+              Monaco; Senin o bitmek bilmeyen TikTok mesain... 📱
             </div>
           </div>
-
           <div class="polaroid p7">
             <img src="foto7.jpg" />
             <div class="p-note">
-              Ankara; İlk Sevgililer Günümüz, sushi keyfimiz ve senin eski WP
-              duvar kağıdın... ❤️
+              Ankara; Sushi keyfimiz ve senin eski WP kağıdın... ❤️
             </div>
           </div>
         </div>
-
         <p
           style="
             font-size: 1.5em;
@@ -815,12 +829,10 @@
         const startDate = new Date("2025-02-08T00:00:00");
         const now = new Date();
         const diff = now - startDate;
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor(
-          (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-        );
-        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const secs = Math.floor((diff % (1000 * 60)) / 1000);
+        const days = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const mins = Math.floor((diff % 3600000) / 60000);
+        const secs = Math.floor((diff % 60000) / 1000);
         const d = document.getElementById("timer-display");
         if (d)
           d.innerHTML = `Kalbimiz Bir Atalı:<br>${days} Gün, ${hours} Saat, ${mins} Dakika, ${secs} Saniye`;
@@ -843,7 +855,6 @@
           if (i >= html.length) {
             clearInterval(timer);
             ts.pause();
-            ts.currentTime = 0;
             updateCounter();
           }
         }, speed);
@@ -946,6 +957,26 @@
           fs.classList.add("active-final");
         }, 100);
         createConfetti();
+        setTimeout(() => {
+          playVoiceWithMusicDuck();
+        }, 2000);
+      }
+
+      function playVoiceWithMusicDuck() {
+        const music = document.getElementById("final-song");
+        const voice = document.getElementById("voice-message");
+        const musicDuck = setInterval(() => {
+          if (music.volume > 0.05) music.volume -= 0.03;
+          else clearInterval(musicDuck);
+        }, 200);
+        voice.volume = 1;
+        voice.play().catch(() => {});
+        voice.onended = () => {
+          const musicUp = setInterval(() => {
+            if (music.volume < 0.4) music.volume += 0.02;
+            else clearInterval(musicUp);
+          }, 200);
+        };
       }
 
       function playClickSnd() {
