@@ -1,5 +1,32 @@
-# Senin için hazırladığım bu özel sürprizi görmek için aşağıdaki linke tıklaman yeterli.
+# 💌 1st Anniversary Surprise Website
 
-## 💌 [Sürprizi Açmak İçin Buraya Tıkla](https://arhis222.github.io/Defneye_surpriz/) 💌
+This project is a custom-coded, interactive web experience created to celebrate a special 1st anniversary. It combines creative CSS animations with JavaScript logic to tell a story and deliver a digital gift. It is recommended to enter the website with your ipad or computer.
 
-Arhis
+🔗 **[Live Demo](https://arhis222.github.io/Defneye_surpriz/)**
+
+## ✨ Features
+
+* **3D Interactive Envelope:** A pure CSS animated envelope that opens with a realistic 3D flipping effect upon interaction.
+* **Responsive Design:** Fully optimized for both mobile and desktop screens, ensuring the letter fits perfectly on any device.
+* **Playful UI Logic:**
+    * The "No" button is elusive; it changes its text and disappears when clicked too many times.
+    * The "Yes" button grows dynamically, eventually filling the entire screen to ensure a positive outcome.
+* **Celebration Mode:**
+    * **Confetti Effect:** A custom JavaScript particle system generates colorful confetti.
+    * **Animations:** Corner GIFs and rising elements (memes/roses) animated with CSS Keyframes.
+    * **Audio Integration:** Background music plays automatically upon reaching the final screen.
+
+## 🛠️ Technologies Used
+
+* **HTML5:** Semantic structure for the envelope, letter, and modal screens.
+* **CSS3:** * Flexbox for centering and layout.
+    * `transform-style: preserve-3d` for the envelope mechanics.
+    * `@keyframes` for the rising animations and confetti fall.
+    * Media Queries for mobile responsiveness.
+* **JavaScript (ES6):** * DOM manipulation for screen transitions.
+    * Event handling for the interactive buttons.
+    * Audio control logic.
+
+## ❤️ Author
+
+Made with ❤️ by **Arhis** for **Defne**.
