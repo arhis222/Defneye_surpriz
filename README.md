@@ -27,6 +27,6 @@ This project is a custom-coded, interactive web experience created to celebrate 
     * Event handling for the interactive buttons.
     * Audio control logic.
 
-## ❤️ Author
+## 👤 Author
 
 Made with ❤️ by **Arhis** for **Defne**.
