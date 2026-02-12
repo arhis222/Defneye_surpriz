@@ -26,6 +26,16 @@ This project is a custom-coded, interactive web experience created to celebrate 
 * **JavaScript (ES6):** * DOM manipulation for screen transitions.
     * Event handling for the interactive buttons.
     * Audio control logic.
+ 
+## 🎵 Music Credits & Disclaimer
+
+This project includes copyrighted music for **personal, non-commercial use only** (celebrating a special 1st anniversary). No copyright infringement is intended.
+
+* **Africa** by *Toto*
+* **Sensiz Olmaz** by *Yalın*
+
+All rights to the audio tracks belong to their respective artists and recording labels. I do not claim ownership of these songs.
+
 
 ## 👤 Author
 
