@@ -2,7 +2,7 @@
 
 This project is a custom-coded, interactive web experience created to celebrate a special 1st anniversary. It combines creative CSS animations with JavaScript logic to tell a story and deliver a digital gift. It is recommended to enter the website with your ipad or computer.
 
-🔗 **[Live Demo](https://arhis222.github.io/Defneye_surpriz/)**
+🔗 **[Live Demo](https://arhis222.github.io/Valentines_Day_Surprise/)**
 
 ## ✨ Features
 
